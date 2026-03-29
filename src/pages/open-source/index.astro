@@ -1,0 +1,95 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+
+const contributions = [
+  {
+    type: "GitHub",
+    title: "工程模块开源集合",
+    description:
+      "维护机械结构模板、控制脚本与实验工具集合，持续迭代版本并记录更新日志。",
+    tags: ["Open Source", "Engineering", "Reusable"],
+    link: "https://github.com/oguri-zy",
+    action: "访问仓库"
+  },
+  {
+    type: "Bilibili",
+    title: "项目教程与实验记录",
+    description:
+      "通过视频形式讲解项目搭建流程、调参过程和常见问题，提升技术传播效率。",
+    tags: ["Video", "Tutorial", "Practice"],
+    link: "#",
+    action: "打开主页"
+  },
+  {
+    type: "文档",
+    title: "飞书协作文档模板",
+    description:
+      "提供可直接复用的项目需求、方案评审、测试验证文档模板，便于团队协作。",
+    tags: ["Feishu", "Template", "Collaboration"],
+    link: "#",
+    action: "查看文档"
+  }
+];
+
+const releaseStrategy = [
+  "小型资源: 放在仓库 README 和 docs 目录",
+  "大文件: 使用 GitHub Releases 托管并维护版本说明",
+  "外链索引: 在本站开源页面集中汇总，避免链接分散",
+  "更新原则: 偶尔更新，但每次保证可复用、可追溯"
+];
+---
+
+<MainLayout
+  title="开源贡献 | Oguri-Zy"
+  description="展示 GitHub、B 站与文档平台上的开源资源与持续贡献。"
+>
+  <Navbar />
+
+  <main class="section">
+    <div class="container">
+      <div class="section-head">
+        <h1 class="section-title">开源贡献</h1>
+        <p class="section-subtitle narrow">
+          集中展示我在 GitHub、B 站和文档平台上的开源内容。这里强调可长期维护，兼顾代码、教程和资源发布。
+        </p>
+      </div>
+
+      <div class="grid-3">
+        {
+          contributions.map((item, index) => (
+            <article class={`info-card reveal d${(index % 4) + 1}`}>
+              <p class="card-kicker">平台: {item.type}</p>
+              <h2 class="card-title">{item.title}</h2>
+              <p class="card-desc">{item.description}</p>
+              <div class="tag-list">
+                {item.tags.map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+              <div class="card-actions">
+                <a class="btn btn-ghost" href={item.link} target={item.link.startsWith("http") ? "_blank" : undefined}>
+                  {item.action}
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <article class="panel-box reveal d2">
+        <div class="panel-head">
+          <h2 class="panel-title">资源发布策略</h2>
+          <p class="section-subtitle narrow">围绕 GitHub 域名长期维护，统一管理大文件、版本与外链导航。</p>
+        </div>
+        <ol class="flow-list">
+          {releaseStrategy.map((item) => <li>{item}</li>)}
+        </ol>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      开源目标: 把可复用的知识沉淀为长期可访问的公共资源
+    </div>
+  </footer>
+</MainLayout>

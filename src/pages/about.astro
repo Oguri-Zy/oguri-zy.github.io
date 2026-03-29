@@ -1,16 +1,98 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Navbar from "../components/Navbar.astro";
+
+const focusAreas = [
+  "机械基础知识与结构设计",
+  "智能传动与模块化集成化设计",
+  "嵌入式开发与传感器融合",
+  "仿真孪生与工业运维调度",
+  "强化学习与世界模型工程实践"
+];
 ---
 
-<MainLayout title="About | Oguri-Zy">
+<MainLayout
+  title="关于我 | Oguri-Zy"
+  description="个人背景、研究方向与工程实践概览。"
+>
   <Navbar />
-  <main class="section">
+
+  <main class="section compact">
     <div class="container">
-      <h1 class="section-title">About</h1>
-      <p class="section-desc">
-        这里放你的个人介绍、教育背景、研究与实践方向、能力概览。
-      </p>
+      <div class="section-head">
+        <h1 class="section-title">关于我</h1>
+        <p class="section-subtitle narrow">
+          我关注机器人与机电工程的跨学科实践，偏好把复杂系统拆解为可验证、可复用、可维护的工程模块。
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <article class="about-panel reveal d1">
+          <h2>个人简介</h2>
+          <p>
+            我正在持续构建一个长期维护的个人技术站点，面向招聘者、同行和普通访客，展示项目实践、知识输出与开源积累。
+            网站重点覆盖机械结构设计、嵌入式控制、仿真优化与智能策略落地。
+          </p>
+          <p>
+            我的工作方式强调完整闭环: 从问题定义、方案设计、实现验证，到文档沉淀与资源发布，尽量让每次输出都具备可复用价值。
+          </p>
+
+          <div class="card-actions">
+            <a class="btn btn-primary" href="#resume">查看简历</a>
+            <a class="btn btn-ghost" href="/projects">查看项目</a>
+          </div>
+        </article>
+
+        <aside class="about-panel reveal d2">
+          <h2>关注方向</h2>
+          <div class="tag-list">
+            {focusAreas.map((item) => <span class="tag">{item}</span>)}
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat-item">
+              <strong>作品集</strong>
+              <span>项目详细介绍与教程</span>
+            </div>
+            <div class="stat-item">
+              <strong>知识库</strong>
+              <span>文章、视频、文档、PDF</span>
+            </div>
+            <div class="stat-item">
+              <strong>开源贡献</strong>
+              <span>GitHub 与多平台资源</span>
+            </div>
+            <div class="stat-item">
+              <strong>长期维护</strong>
+              <span>GitHub 域名与版本管理</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="panel-box reveal d3" id="resume">
+        <div class="panel-head">
+          <h2 class="panel-title">简历</h2>
+          <p class="section-subtitle narrow">
+            简历已合并到关于页中统一维护。你可以在线预览，也可以直接下载 PDF。
+          </p>
+        </div>
+
+        <div class="card-actions toolbar">
+          <a class="btn btn-primary" href="/resume.pdf" target="_blank">下载简历 PDF</a>
+          <a class="btn btn-ghost" href="mailto:your_email@example.com">邮件联系</a>
+        </div>
+
+        <div class="resume-wrap">
+          <iframe class="resume-frame" title="Resume" src="/resume.pdf#view=FitH"></iframe>
+        </div>
+      </section>
     </div>
   </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      如果你希望交流项目合作或技术话题，可前往首页联系模块找到我
+    </div>
+  </footer>
 </MainLayout>

@@ -1,0 +1,131 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+
+const platformLinks = [
+  { label: "GitHub 仓库", href: "https://github.com/oguri-zy" },
+  { label: "Bilibili 专栏", href: "#" },
+  { label: "飞书文档主页", href: "#" },
+  { label: "PDF 资料目录", href: "#" }
+];
+
+const knowledgeItems = [
+  {
+    type: "文章",
+    title: "模块化机械结构设计方法",
+    description:
+      "总结结构分层、接口标准和可维护性设计策略，适合用于机器人底盘和装备模块的方案规划。",
+    tags: ["机械结构", "模块化", "实践经验"],
+    source: "站内文章",
+    href: "#",
+    action: "阅读文章"
+  },
+  {
+    type: "视频",
+    title: "MuJoCo 强化学习训练入门",
+    description:
+      "通过完整示例讲解环境搭建、奖励函数设计和训练评估，帮助快速建立可迭代的实验流程。",
+    tags: ["Bilibili", "强化学习", "仿真"],
+    source: "B 站教程",
+    href: "#",
+    action: "观看视频"
+  },
+  {
+    type: "文档",
+    title: "工业运维调度方案手册",
+    description:
+      "记录设备协同、故障降级和任务调度策略，适合作为团队内工程文档模板进行二次复用。",
+    tags: ["飞书", "调度优化", "工程文档"],
+    source: "飞书文档",
+    href: "#",
+    action: "打开文档"
+  },
+  {
+    type: "PDF",
+    title: "嵌入式与传感器融合速查",
+    description:
+      "收录常见传感器接入流程、采样滤波策略与调参建议，适用于项目开发中的快速查阅。",
+    tags: ["PDF", "嵌入式", "传感器"],
+    source: "可下载资料",
+    href: "#",
+    action: "下载 PDF"
+  },
+  {
+    type: "索引",
+    title: "世界模型与仿真资源导航",
+    description:
+      "整理论文、课程、开源仓库和实验记录入口，降低世界模型学习与实践的检索成本。",
+    tags: ["世界模型", "资源导航", "持续更新"],
+    source: "知识索引",
+    href: "#",
+    action: "查看索引"
+  },
+  {
+    type: "发布",
+    title: "大文件发布与版本管理规范",
+    description:
+      "说明如何在 GitHub Release 管理模型权重、视频与压缩包，并为每次发布提供校验和更新日志。",
+    tags: ["GitHub", "Release", "长期维护"],
+    source: "发布规范",
+    href: "#",
+    action: "查看规范"
+  }
+];
+---
+
+<MainLayout
+  title="知识库 | Oguri-Zy"
+  description="文章、B站、飞书与 PDF 资料集中页，用于知识分享与技术普及。"
+>
+  <Navbar />
+
+  <main class="section compact">
+    <div class="container">
+      <div class="section-head">
+        <h1 class="section-title">知识库</h1>
+        <p class="section-subtitle narrow">
+          集中管理文章、视频、飞书文档、PDF 与资源索引。你可以把所有知识输出统一挂在这里，形成长期可维护的分享入口。
+        </p>
+      </div>
+
+      <div class="quick-links">
+        {
+          platformLinks.map((item) => (
+            <a class="btn btn-ghost" href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined}>
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="grid-3">
+        {
+          knowledgeItems.map((item, index) => (
+            <article class={`info-card reveal d${(index % 4) + 1}`}>
+              <p class="card-kicker">{item.type}</p>
+              <h2 class="card-title">{item.title}</h2>
+              <p class="card-desc">{item.description}</p>
+              <div class="meta-pills">
+                <span class="meta-pill">来源: {item.source}</span>
+              </div>
+              <div class="tag-list">
+                {item.tags.map((tag) => <span class="tag">{tag}</span>)}
+              </div>
+              <div class="card-actions">
+                <a class="btn btn-ghost" href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined}>
+                  {item.action}
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      知识库更新频率: 偶尔更新 · 但每次会保证内容完整与可复用
+    </div>
+  </footer>
+</MainLayout>

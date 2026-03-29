@@ -1,0 +1,53 @@
+---
+const timelineItems = [
+  {
+    date: "2026 - 进行中",
+    title: "智能系统前沿探索",
+    description:
+      "聚焦强化学习与世界模型在工业场景中的应用，推进仿真验证、策略训练与设备端部署的工程闭环。"
+  },
+  {
+    date: "2025 - 2026",
+    title: "机电一体化原型落地",
+    description:
+      "完成智能精密装备原型方案设计，打通机械结构、驱动控制、传感融合和调参验证流程。"
+  },
+  {
+    date: "2024 - 2025",
+    title: "工业运维与集成调度实践",
+    description:
+      "围绕系统稳定性和可维护性，探索模块化接口标准、故障诊断策略与调度优化方法。"
+  },
+  {
+    date: "2023 - 2024",
+    title: "机械基础与结构设计积累",
+    description:
+      "系统学习机械基础知识、结构设计与加工工艺，建立从理论到工程实现的设计思维。"
+  }
+];
+---
+
+<section class="section" id="timeline">
+  <div class="container">
+    <div class="section-head section-center">
+      <h2 class="section-title">经历时间轴</h2>
+      <div class="section-line"></div>
+      <p class="section-subtitle narrow center">
+        从机械基础到智能系统实践的阶段轨迹
+      </p>
+    </div>
+
+    <div class="timeline">
+      {
+        timelineItems.map((item, index) => (
+          <article class={`timeline-item reveal d${(index % 4) + 1}`}>
+            <span class="timeline-node"></span>
+            <p class="timeline-date">{item.date}</p>
+            <h3 class="timeline-title">{item.title}</h3>
+            <p class="timeline-desc">{item.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

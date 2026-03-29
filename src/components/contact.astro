@@ -1,0 +1,62 @@
+---
+const contacts = [
+  {
+    label: "邮箱",
+    value: "your_email@example.com",
+    href: "mailto:your_email@example.com"
+  },
+  {
+    label: "GitHub",
+    value: "github.com/oguri-zy",
+    href: "https://github.com/oguri-zy"
+  },
+  {
+    label: "Bilibili",
+    value: "你的 B 站主页链接",
+    href: "#"
+  },
+  {
+    label: "飞书",
+    value: "文档主页或团队主页",
+    href: "#"
+  },
+  {
+    label: "微信",
+    value: "可放二维码图片链接",
+    href: "#"
+  },
+  {
+    label: "知乎/其他平台",
+    value: "补充你的技术输出渠道",
+    href: "#"
+  }
+];
+---
+
+<section class="section alt" id="contact">
+  <div class="container">
+    <div class="section-head section-center">
+      <h2 class="section-title">联系我</h2>
+      <div class="section-line"></div>
+      <p class="section-subtitle narrow center">
+        面向招聘者、同行与普通访客开放交流，欢迎讨论项目合作、技术分享与工程实践
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      {
+        contacts.map((item, index) => (
+          <a href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} class={`contact-card reveal d${(index % 4) + 1}`}>
+            <p class="contact-label">{item.label}</p>
+            <p class="contact-value">{item.value}</p>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="contact-actions">
+      <a class="btn btn-primary" href="mailto:your_email@example.com">发送邮件</a>
+      <a class="btn btn-ghost" href="/about#resume">查看简历</a>
+    </div>
+  </div>
+</section>

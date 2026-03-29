@@ -1,14 +1,86 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
 import Navbar from "../../components/Navbar.astro";
+
+const projects = [
+  {
+    stage: "进行中",
+    title: "模块化智能传动平台",
+    description:
+      "面向小型智能装备，设计可快速更换的传动模块，验证不同减速结构与驱动策略的性能差异。",
+    stack: ["SolidWorks", "传动设计", "STM32", "FOC"],
+    guide: ["需求拆解与参数边界", "机械结构建模与打样", "驱动控制调参", "性能测试与记录"],
+    repo: "https://github.com/oguri-zy"
+  },
+  {
+    stage: "已完成",
+    title: "嵌入式传感融合实验板",
+    description:
+      "集成多源传感器并实现统一采样链路，针对噪声与延迟问题建立滤波和校准流程。",
+    stack: ["嵌入式", "传感器", "数据融合", "实时控制"],
+    guide: ["硬件选型与接口定义", "采样驱动开发", "融合算法与误差分析", "实验结果复盘"],
+    repo: "https://github.com/oguri-zy"
+  },
+  {
+    stage: "规划中",
+    title: "世界模型工业调度验证",
+    description:
+      "搭建仿真环境，对工业运维任务进行策略训练与迁移验证，评估强化学习方法的工程可行性。",
+    stack: ["MuJoCo", "Python", "强化学习", "世界模型"],
+    guide: ["场景抽象与状态定义", "奖励函数设计", "训练与评估", "部署可行性分析"],
+    repo: "https://github.com/oguri-zy"
+  }
+];
 ---
 
-<MainLayout title="Projects | Oguri-Zy">
+<MainLayout
+  title="个人项目 | Oguri-Zy"
+  description="DIY 项目详细介绍与教程索引，覆盖机械设计、嵌入式开发和智能控制实践。"
+>
   <Navbar />
+
   <main class="section">
     <div class="container">
-      <h1 class="section-title">Projects</h1>
-      <p class="section-desc">这里将展示你的代表性项目。</p>
+      <div class="section-head">
+        <h1 class="section-title">个人项目</h1>
+        <p class="section-subtitle narrow">
+          这里存放 DIY 项目的详细介绍和教程路线。每个项目都按背景、方案、实现步骤和复盘要点组织，方便后续长期维护。
+        </p>
+      </div>
+
+      <div class="grid-3">
+        {
+          projects.map((project, index) => (
+            <article class={`info-card reveal d${(index % 4) + 1}`}>
+              <p class="card-kicker">项目状态: {project.stage}</p>
+              <h2 class="card-title">{project.title}</h2>
+              <p class="card-desc">{project.description}</p>
+
+              <div class="tag-list">
+                {project.stack.map((item) => <span class="tag">{item}</span>)}
+              </div>
+
+              <div class="meta-pills">
+                <span class="meta-pill">教程路径</span>
+              </div>
+              <ol class="flow-list">
+                {project.guide.map((step) => <li>{step}</li>)}
+              </ol>
+
+              <div class="card-actions">
+                <a class="btn btn-ghost" href={project.repo} target="_blank">代码仓库</a>
+                <a class="btn btn-ghost" href="/knowledge">相关文档</a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      每个项目建议按 设计文档 + 代码仓库 + 教程说明 三件套维护
+    </div>
+  </footer>
 </MainLayout>

@@ -1,0 +1,59 @@
+---
+const skillGroups = [
+  {
+    title: "结构设计与传动",
+    type: "structure",
+    items: ["SolidWorks", "智能传动", "集成化设计", "精密装备", "智能装备"]
+  },
+  {
+    title: "智能硬件与运动控制",
+    type: "hardware",
+    items: ["单片机", "PCB", "FreeRTOS", "ROS", "Motion Control", "RL"]
+  },
+  {
+    title: "仿真优化与数字孪生",
+    type: "simulation",
+    items: ["Ansys", "FEA", "TO", "VR", "数字孪生"]
+  },
+  {
+    title: "工业运维与智能体",
+    type: "ops",
+    items: ["运维", "调度", "多模态", "工业智能体", "自动化工作流", "世界模型"]
+  }
+];
+---
+
+<section class="section" id="tech-stack">
+  <div class="container">
+    <div class="section-head section-center">
+      <h2 class="section-title">技术栈</h2>
+      <div class="section-line"></div>
+      <p class="section-subtitle narrow center">
+        覆盖结构设计、硬件控制、仿真优化与工业智能系统
+      </p>
+    </div>
+
+    <div class="skill-flow skill-grid-modern mt-10">
+      {
+        skillGroups.map((group, index) => (
+          <article class={`skill-col skill-col-${group.type} reveal d${(index % 4) + 1}`}>
+            <div class="skill-col-header modern">
+              <span class="skill-symbol" aria-hidden="true"></span>
+              <h3 class="skill-col-title">{group.title}</h3>
+            </div>
+            <div class="skill-pill-list">
+              {
+                group.items.map((item) => (
+                  <span class="skill-pill">
+                    <span class="chip-dot" aria-hidden="true"></span>
+                    {item}
+                  </span>
+                ))
+              }
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

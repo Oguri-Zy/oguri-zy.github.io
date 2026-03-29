@@ -1,68 +1,160 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Navbar from "../components/Navbar.astro";
+import TechStack from "../components/tech-stack.astro";
+import Timeline from "../components/timeline.astro";
+import Contact from "../components/contact.astro";
+
+const featuredProjects = [
+  {
+    kicker: "DIY 项目",
+    title: "智能传动模组实验平台",
+    description:
+      "围绕模块化机械结构、伺服驱动与传感采样，构建可复用的实验平台并输出完整调参文档。",
+    tags: ["机械结构", "智能传动", "STM32"],
+    href: "/projects"
+  },
+  {
+    kicker: "系统工程",
+    title: "工业运维调度仿真系统",
+    description:
+      "通过数字孪生建模与策略优化，模拟复杂设备协同过程，验证调度算法的稳定性与实时性。",
+    tags: ["仿真孪生", "调度优化", "Python"],
+    href: "/projects"
+  },
+  {
+    kicker: "智能控制",
+    title: "强化学习控制策略验证",
+    description:
+      "从仿真环境训练到工程约束落地，构建奖励函数与评估基准，探索策略在工业场景的迁移能力。",
+    tags: ["强化学习", "世界模型", "MuJoCo"],
+    href: "/projects"
+  }
+];
+
+const featuredOpenSource = [
+  {
+    kicker: "开源资料",
+    title: "项目文档与教程索引",
+    description:
+      "持续维护项目设计说明、教程路径与版本记录，方便招聘者和同行快速理解项目全貌。",
+    tags: ["文档", "教程", "长期维护"],
+    href: "/open-source"
+  },
+  {
+    kicker: "代码仓库",
+    title: "通用模块与脚本沉淀",
+    description:
+      "将可复用的机械设计模板、控制脚本和实验工具逐步开源，降低二次开发与学习成本。",
+    tags: ["GitHub", "工具链", "复用"],
+    href: "/open-source"
+  },
+  {
+    kicker: "知识普及",
+    title: "B 站与飞书知识分享",
+    description:
+      "结合视频与文档双渠道，发布从入门到实战的技术内容，帮助更多访客理解工程实现细节。",
+    tags: ["Bilibili", "飞书", "知识分享"],
+    href: "/knowledge"
+  }
+];
 ---
 
 <MainLayout
   title="Oguri-Zy | 机器人与机电工程作品集"
-  description="作品集、技术博客、资源下载、个人简历"
+  description="作品集、知识分享、开源贡献与简历展示，面向招聘者、同行与普通访客。"
 >
   <Navbar />
 
   <main>
     <section class="hero">
-      <div class="container hero-wrap">
-        <div>
-          <span class="hero-kicker">Robotics · Mechatronics · Embedded · Vision</span>
-          <h1>Oguri-Zy</h1>
-          <p>
-            专注于机械结构设计、智能传动、集成化设计、嵌入式与传感器系统、
-            仿真孪生与优化、工业运维与调度，以及强化学习、世界模型在工业中的落地。
-          </p>
-
-          <div class="btn-row">
-            <a class="btn primary" href="/projects">查看项目</a>
-            <a class="btn" href="/blog">进入博客</a>
-            <a class="btn" href="/resources">资源下载</a>
-            <a class="btn" href="/resume">查看简历</a>
+      <div class="container">
+        <div class="hero-shell reveal d1">
+          <div class="hero-content">
+            <p class="hero-kicker">Mechatronics · Embedded · Intelligent Systems</p>
+            <h1 class="hero-title">你好，<br/>我是 <span class="text-accent">Oguri-Zy</span></h1>
+            <p class="hero-desc">
+              这里是我的个人主页。<br/>聚焦机械与传动设计、嵌入式与传感器、仿真优化与工业调度，以及强化学习落地。
+            </p>
+            <div class="hero-actions-left">
+              <a href="/about" class="btn btn-primary">关于我</a>
+            </div>
+          </div>
+          <div class="hero-image-wrapper">
+            <img class="avatar-large" src="/profile_picture.png" alt="Oguri-Zy 头像" loading="eager" />
           </div>
         </div>
-
-        <div class="hero-panel"></div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2 class="section-title">我主要在做什么</h2>
-        <p class="section-desc">
-          这个网站将长期整理我的实践项目、技术文章、资源发布与阶段性积累，
-          面向招聘者、同行和普通访客展示我在机器人与机电系统方向上的持续探索。
-        </p>
+        <div class="section-head section-center">
+          <h2 class="section-title">个人项目</h2>
+          <div class="section-line"></div>
+          <p class="section-subtitle narrow center">
+            聚焦 DIY 与工程落地，强调问题背景、实现思路、关键方案与可复现教程
+          </p>
+        </div>
 
-        <div class="grid-3" style="margin-top: 28px;">
-          <article class="card">
-            <h3>项目作品集</h3>
-            <p>展示机械结构、机器人平台、嵌入式控制、视觉感知与系统集成项目。</p>
-          </article>
-
-          <article class="card">
-            <h3>技术博客</h3>
-            <p>记录设计思路、踩坑经验、控制实现、工程优化与技术分享。</p>
-          </article>
-
-          <article class="card">
-            <h3>资源下载</h3>
-            <p>整理简历、说明文档、项目资料、可公开分享的代码与打包文件。</p>
-          </article>
+        <div class="grid-3">
+          {
+            featuredProjects.map((item, index) => (
+              <article class={`info-card reveal d${(index % 4) + 1}`}>
+                <p class="card-kicker">{item.kicker}</p>
+                <h3 class="card-title">{item.title}</h3>
+                <p class="card-desc">{item.description}</p>
+                <div class="tag-list">
+                  {item.tags.map((tag) => <span class="tag">{tag}</span>)}
+                </div>
+                <div class="card-actions">
+                  <a class="btn btn-ghost" href={item.href}>查看详情</a>
+                </div>
+              </article>
+            ))
+          }
         </div>
       </div>
     </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="section-head section-center">
+          <h2 class="section-title">开源贡献</h2>
+          <div class="section-line"></div>
+          <p class="section-subtitle narrow center">
+            在 GitHub、B 站等平台持续输出项目资源与工程经验，形成可共享的知识资产
+          </p>
+        </div>
+
+        <div class="grid-3">
+          {
+            featuredOpenSource.map((item, index) => (
+              <article class={`info-card reveal d${(index % 4) + 1}`}>
+                <p class="card-kicker">{item.kicker}</p>
+                <h3 class="card-title">{item.title}</h3>
+                <p class="card-desc">{item.description}</p>
+                <div class="tag-list">
+                  {item.tags.map((tag) => <span class="tag">{tag}</span>)}
+                </div>
+                <div class="card-actions">
+                  <a class="btn btn-ghost" href={item.href}>进入页面</a>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <Timeline />
+    <TechStack />
+    <Contact />
   </main>
 
-  <footer class="footer">
+  <footer class="site-footer">
     <div class="container">
-      © 2026 Oguri-Zy · Built with Astro
+      © 2026 Oguri-Zy · Build with Astro · 持续更新的个人作品集与知识分享站点
     </div>
   </footer>
 </MainLayout>
