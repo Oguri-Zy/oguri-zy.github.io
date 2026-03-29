@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://oguri-l.github.io',
+  site: 'https://oguri-zy.github.io',
 });
